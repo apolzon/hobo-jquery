@@ -442,18 +442,21 @@ Because the select-one is a part, it cannot be parameterized.  However, you can 
 
 <!--
 The jQuery-UI Accordion widget.  Use content1, content2, etc. to pass in content chunks and header1, header2 for their headers.  The header-id attribute is used as the accordion wrapper.  Options should be passed as string which looks like a javascript hash.
+The default formatting can be overridden by using the content-section parameter.
 TODO: look at how bryan handles option passing in hjq-dialog
 -->
 <def tag="hjq-accordion" attrs="header-id, options">
 	<div id="#{header_id}" merge>
-		<repeat with="&attributes & attributes.keys.grep(/content/)">
-			<h3><a href="#"><%= attributes[this_key.sub('content','header')] || 'Unset' %></a></h3>
+		<repeat with="&attributes & attributes.keys.grep(/content/)" param="content-section">
+			<h3>
+				<a href="#"><%= attributes[this_key.sub('content','header')] || 'Unset' %></a>
+			</h3>
 			<div><view/></div>
 		</repeat>
 	</div>	
 	<script type="text/javascript">
 		jQuery(function() {
-			jQuery('#<%= header_id %>').accordion(<%= options %>);
+			jQuery('#<%="#{header_id}"%>').accordion(<%="#{options}"%>);
 		});
 	</script>
 </def>
