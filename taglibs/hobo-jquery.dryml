@@ -448,7 +448,7 @@ TODO: look at how bryan handles option passing in hjq-dialog
 	<div id="#{header_id}" merge>
 		<repeat with="&attributes & attributes.keys.grep(/content/)">
 			<h3><a href="#"><%= attributes[this_key.sub('content','header')] || 'Unset' %></a></h3>
-			<div><%= this %></div>
+			<div><view/></div>
 		</repeat>
 	</div>	
 	<script type="text/javascript">
